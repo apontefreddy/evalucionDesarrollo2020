@@ -1,0 +1,75 @@
+<div class="container">
+  <h1>¡Conoce cuantos días faltan para tu Cumpleaños!</h1>
+  <div class="col-lg-8 ">
+    
+    <h4><small></small></h4>
+     <div class="row center" style="background: #DBF3F1; border-radius: 5px; padding: 10px;">
+        <form (ngSubmit)="enviar()" #personaForm="ngForm">
+           <div class="col-sm-12">
+              <div class="row">
+                 <div class="col-sm-6 form-group">
+                    <label>Nombre</label>
+                    <input required ngModel  type="text" class="form-control" id="Nombre" #Nombre="ngModel" name="Nombre" [(ngModel)]="persona.nombre">
+                 </div>
+
+
+                 <div class="col-sm-6 form-group">
+                    <label>Apellido</label>
+                    <input type="text" class="form-control" name="apellido" [(ngModel)]="persona.apellido" required >
+                 </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6 form-group">
+                   <label>Fecha Nacimiento</label>
+                   <input type="date"  class="form-control" name="fechaNac" [(ngModel)]="persona.fechaNac" required >
+                </div>
+             </div>
+
+
+
+             <div class="row">
+                <div class="col-sm">
+
+                  <button type="submit" class="btn btn-lg btn-success" [disabled]="!personaForm.valid" >Enviar</button>
+                  <button type="button" class="btn btn-lg btn-danger" (click)="limpia()">Limpiar</button>
+
+                </div>
+            </div>
+
+
+           </div>
+        </form>
+
+        <div class="row">
+         <br>
+        </div>
+
+        <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+         <p style="color: white">Cargando. </p>
+         </ngx-spinner>
+     </div>
+  </div>
+</div>
+<br>
+
+<div *ngIf="exito" class="container" style="background: #DBF3F1; border-radius: 5px; padding: 10px;">
+   <h3  class="text-success">Lista de personas consultadas:</h3>
+</div>
+<br>
+<div *ngIf="exito" class="container" style="height:250px; overflow: scroll;">
+  
+   <div *ngFor="let per of personas" class="row center" style="background: #C2F5F0; border-radius: 5px; padding: 10px;" >
+      <div class="col-sm-6 form-group">
+         <label>Nombre y Apellido:<span> {{per.nombre}} {{per.apellido}}</span> </label>
+         <br>
+         <label>Fecha de Nacimiento: <span> {{per.fechaNacString}}</span> </label>
+         <br>
+         <label>Edad: <span>{{per.edad}} </span></label>
+         <br>
+         <label>Mensaje: </label><label>{{per.mensaje}} </label>
+         <hr style="border-color:rgb(3, 23, 31);"/>
+      </div>
+
+   </div>
+
+</div>
